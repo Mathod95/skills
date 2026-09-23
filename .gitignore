@@ -15,6 +15,9 @@
 # Géré/synchronisé par Anthropic, jamais versionné manuellement ici.
 skills/synced/
 
+# Pas encore prêt pour ce repo, à réintégrer une fois réécrit proprement.
+skills/create-docs/
+
 # Artefacts de build zensical.
 .venv/
 .cache/

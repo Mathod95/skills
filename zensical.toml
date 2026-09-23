@@ -12,7 +12,6 @@ edit_uri = "edit/main/docs/"
 
 nav = [
   { "Accueil" = "index.md" },
-  { "create-docs (zensical)" = "skills/create-docs/SKILL.md" },
   { "research/learn-a-tech" = [
       { "Le skill" = "skills/research/learn-a-tech/SKILL.md" },
       { "Candidats de futurs skills" = "skills/research/learn-a-tech/candidate-skills.md" },
