@@ -1,0 +1,7 @@
+# Delta appliqué sur le zensical.toml fraîchement généré par `zensical new .`
+# (jamais un remplacement complet du fichier, seulement ces ajustements ciblés,
+# pour ne jamais masquer une feature ajoutée entre-temps par une nouvelle
+# version de zensical). Complété au compte-gouttes au fil des bootstraps.
+
+enable = []
+disable = []

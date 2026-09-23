@@ -1,0 +1,21 @@
+# Tout est ignoré par défaut. Seul ce qui est explicitement listé ci-dessous
+# est versionné. Approche volontairement stricte: ~/.claude/ contient des
+# données sensibles (identifiants, historique de sessions, transcripts de
+# conversations) à ne jamais committer, même par erreur.
+/*
+
+!/.gitignore
+!/README.md
+!/zensical.toml
+!/docs/
+!/overrides/
+!/.github/
+!/skills/
+
+# Géré/synchronisé par Anthropic, jamais versionné manuellement ici.
+skills/synced/
+
+# Artefacts de build zensical.
+.venv/
+.cache/
+site/

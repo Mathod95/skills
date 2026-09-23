@@ -1,0 +1,9 @@
+/* Masque la sidebar de navigation (gauche) */
+html.zts-hide-nav .md-sidebar--primary {
+  display: none !important;
+}
+
+/* Masque la sidebar de sommaire (droite) */
+html.zts-hide-toc .md-sidebar--secondary {
+  display: none !important;
+}
