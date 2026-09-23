@@ -37,7 +37,7 @@ Recherche la documentation officielle **en direct** d'une technologie (jamais la
 
 `references/<techno>.md` reste strictement généraliste (des faits, sourcés, jamais de narration). Un point spécifique/notable (une erreur commise, un raisonnement, un contexte précis) part dans un `studycases/<techno>-<sujet>.md` séparé plutôt que d'être mélangé à la référence.
 
-Références actuellement présentes: `references/crossplane.md`, `references/backstage.md`. Studycase: `studycases/crossplane-m-suffix.md`.
+Références actuellement présentes: `references/crossplane.md`, `references/backstage.md`, `references/saltbox.md`. Studycase: `studycases/crossplane-m-suffix.md`.
 
 ## Comment un skill est créé — cas d'usage concret
 

@@ -116,7 +116,18 @@ catalog:
 
 **app-config.yaml layering**: confirmé inchangé, `app-config.yaml` → `app-config.{ENV}.yaml` → `app-config.local.yaml` → variantes ENV.local, puis `APP_CONFIG_*` en priorité maximale.
 
-**Postgres**: `backend.database.client: pg` + bloc `connection`, inchangé.
+**Postgres**: `backend.database.client: pg` + bloc `connection`, inchangé. Noms de variables d'env exacts confirmés en direct (2026-09-23, cf. https://backstage.io/docs/tutorials/switching-sqlite-postgres/) pour le pattern `app-config.production.yaml` recommandé:
+```yaml
+backend:
+  database:
+    client: pg
+    connection:
+      host: ${POSTGRES_HOST}
+      port: ${POSTGRES_PORT}
+      user: ${POSTGRES_USER}
+      password: ${POSTGRES_PASSWORD}
+```
+SSL: `PGSSLMODE` (env var, suit les sslmode standards Postgres) pour activer/désactiver, `connection.ssl.ca.$file: <path>` pour un CA custom. Pool de connexions ajustable via `knexConfig.pool` (`min`/`max`/`acquireTimeoutMillis`/`idleTimeoutMillis`).
 
 **Kubernetes / health checks — nuance à ajouter**: le chart Helm officiel (github.com/backstage/charts) reste explicitement démo-only. Les endpoints de santé dépendent de la génération du backend: **nouveau backend system** → `/.backstage/health/v1/{readiness,liveness}` (confirmé) ; **backend legacy** → `/healthcheck` (toujours l'exemple montré dans la doc de déploiement K8s elle-même). Préciser sur quelle génération de backend on est avant de documenter l'un ou l'autre.
 

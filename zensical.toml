@@ -17,6 +17,7 @@ nav = [
       { "Candidats de futurs skills" = "skills/research/learn-a-tech/candidate-skills.md" },
       { "Référence Crossplane" = "skills/research/learn-a-tech/references/crossplane.md" },
       { "Référence Backstage" = "skills/research/learn-a-tech/references/backstage.md" },
+      { "Référence Saltbox" = "skills/research/learn-a-tech/references/saltbox.md" },
       { "Studycase : .m. Crossplane" = "skills/research/learn-a-tech/studycases/crossplane-m-suffix.md" },
     ] },
 ]
