@@ -10,8 +10,13 @@ Skills Claude Code personnels, versionnés et rendus navigables via zensical (ce
 ├── zensical.toml                      config du site
 ├── docs/
 │   └── skills/
-│       └── research/                  copie de skills/research/, resynchronisée à la main
+│       ├── research/                  copie de skills/research/, resynchronisée à la main
+│       └── saltbox/                   copie de skills/saltbox/, resynchronisée à la main
 └── skills/
+    ├── saltbox/
+    │   └── create-custom-role/
+    │       ├── SKILL.md
+    │       └── scripts/lint-role.sh
     └── research/
         └── learn-a-tech/
             ├── SKILL.md
@@ -26,7 +31,7 @@ Skills Claude Code personnels, versionnés et rendus navigables via zensical (ce
 `docs/skills/` est une **copie** de `skills/`, pas un symlink: zensical ne suit pas correctement les liens de navigation à travers un dossier symlinké sous `docs/` (limitation connue de l'outil, encore en version alpha). Après toute modification d'un skill listé dans `docs/`, resynchroniser avant de rebuild:
 
 ```bash
-rm -rf docs/skills/research && cp -r skills/research docs/skills/research
+for s in research saltbox; do rm -rf docs/skills/$s && cp -r skills/$s docs/skills/$s; done
 ```
 
 ## Skills actuellement présents
@@ -38,6 +43,10 @@ Recherche la documentation officielle **en direct** d'une technologie (jamais la
 `references/<techno>.md` reste strictement généraliste (des faits, sourcés, jamais de narration). Un point spécifique/notable (une erreur commise, un raisonnement, un contexte précis) part dans un `studycases/<techno>-<sujet>.md` séparé plutôt que d'être mélangé à la référence.
 
 Références actuellement présentes: `references/crossplane.md`, `references/backstage.md`, `references/saltbox.md`. Studycase: `studycases/crossplane-m-suffix.md`.
+
+### `saltbox/create-custom-role`
+
+Procédure pour créer ou revoir un rôle Ansible custom Saltbox (via saltbox_mod), avec la convention actuelle (vérifiée en direct contre `Sandbox/AGENTS.md`, jamais contre le template `helloworld`, obsolète). Fournit `scripts/lint-role.sh`, qui installe et lance `saltbox-lint` et `ansible-lint` comme la CI de Sandbox. Créé après validation explicite, à partir du candidat noté pendant la recherche `learn-a-tech saltbox`.
 
 ## Comment un skill est créé — cas d'usage concret
 

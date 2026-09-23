@@ -20,6 +20,9 @@ nav = [
       { "Référence Saltbox" = "skills/research/learn-a-tech/references/saltbox.md" },
       { "Studycase : .m. Crossplane" = "skills/research/learn-a-tech/studycases/crossplane-m-suffix.md" },
     ] },
+  { "saltbox/create-custom-role" = [
+      { "Le skill" = "skills/saltbox/create-custom-role/SKILL.md" },
+    ] },
 ]
 
 extra_css = ["stylesheets/toggle-sidebar.css"]
