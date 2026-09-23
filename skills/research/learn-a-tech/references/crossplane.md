@@ -1,6 +1,6 @@
 # Notes Crossplane — vérifié le 2026-09-22
 
-Recherche menée sur la doc live https://docs.crossplane.io/latest/ (Crossplane 2.4.1), après une erreur initiale (`iam.aws.m.upbound.io` pris pour une coquille alors que c'est un vrai mécanisme). Voir "Points d'attention" pour le détail de cette erreur, c'est l'origine directe de ce skill.
+Recherche menée sur la doc live https://docs.crossplane.io/latest/ (Crossplane 2.4.1).
 
 ## 1. Le `.m.` : namespaced Managed Resources
 
@@ -119,7 +119,7 @@ Valeurs possibles de `managementPolicies`: `*` (défaut, contrôle complet), `Cr
 
 ## Points d'attention / pièges
 
-- **L'erreur d'origine de ce skill**: `iam.aws.m.upbound.io` a été pris pour une coquille de nommage sans vérifier, alors que `.m.` est un vrai mécanisme documenté (managed resources namespaced v2). Réflexe à éviter: qualifier un truc inconnu/inhabituel d'"erreur" sans chercher.
+- `iam.aws.m.upbound.io` (et les autres groupes `.m.`) peuvent ressembler à une coquille de nommage au premier coup d'œil, ce n'en est pas une, c'est un mécanisme documenté (managed resources namespaced v2, voir section 1).
 - Modéliser un XR imbriqué vs une Composition qui applique des Managed Resources brutes: ce sont deux mécanismes différents, ne pas les confondre (le premier compose d'autres XR, le second compose des ressources cloud directement).
 - `function-extra-resources` "dépréciée en v2" n'est affirmé que par une source secondaire, non confirmé officiellement — à revérifier avant de s'appuyer dessus.
 

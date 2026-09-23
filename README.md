@@ -16,14 +16,17 @@ Skills Claude Code personnels, versionnés et rendus navigables via zensical (ce
         └── learn-a-tech/
             ├── SKILL.md
             ├── candidate-skills.md
-            └── references/
-                └── crossplane.md
+            ├── references/
+            │   ├── crossplane.md
+            │   └── backstage.md
+            └── studycases/
+                └── crossplane-m-suffix.md
 ```
 
 `docs/skills/` est une **copie** de `skills/`, pas un symlink: zensical ne suit pas correctement les liens de navigation à travers un dossier symlinké sous `docs/` (limitation connue de l'outil, encore en version alpha). Après toute modification d'un skill listé dans `docs/`, resynchroniser avant de rebuild:
 
 ```bash
-rsync -a --delete skills/research/ docs/skills/research/
+rm -rf docs/skills/research && cp -r skills/research docs/skills/research
 ```
 
 ## Skills actuellement présents
@@ -32,7 +35,9 @@ rsync -a --delete skills/research/ docs/skills/research/
 
 Recherche la documentation officielle **en direct** d'une technologie (jamais la mémoire d'entraînement pour trancher un fait technique précis) et maintient un fichier de référence à jour par techno dans `references/`. Contient aussi `candidate-skills.md`, un backlog des sous-thèmes assez riches pour mériter un jour leur propre skill dédié, jamais créé automatiquement, toujours proposé puis validé.
 
-Référence actuellement présente: `references/crossplane.md`.
+`references/<techno>.md` reste strictement généraliste (des faits, sourcés, jamais de narration). Un point spécifique/notable (une erreur commise, un raisonnement, un contexte précis) part dans un `studycases/<techno>-<sujet>.md` séparé plutôt que d'être mélangé à la référence.
+
+Références actuellement présentes: `references/crossplane.md`, `references/backstage.md`. Studycase: `studycases/crossplane-m-suffix.md`.
 
 ## Comment un skill est créé — cas d'usage concret
 

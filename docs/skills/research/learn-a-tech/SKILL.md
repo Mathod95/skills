@@ -3,7 +3,7 @@ name: learn-a-tech
 description: Recherche la documentation officielle EN DIRECT d'une technologie (ex. Crossplane, Prometheus, Karpenter) et maintient un fichier de référence à jour dans references/<techno>.md. À utiliser quand l'utilisateur dit explicitement "learn-a-tech <techno>", ou demande d'apprendre/se documenter sur une techno avant de bosser dessus sur un projet. Ne jamais se fier à la mémoire d'entraînement pour une techno qui évolue vite, toujours vérifier contre la doc live.
 ---
 
-Née d'un incident concret: sur le projet Backstage/Crossplane, `.m.` dans `iam.aws.m.upbound.io` a été pris pour une coquille et "corrigé" sans vérifier, alors que c'est un vrai mécanisme (managed resources namespaced, Crossplane v2). Ce skill existe pour que ça ne se reproduise pas: la règle centrale n'est pas "avoir un fichier de référence", c'est "vérifier en direct quand quelque chose surprend, jamais trancher depuis la mémoire ou une intuition".
+La règle centrale de ce skill n'est pas "avoir un fichier de référence", c'est "vérifier en direct quand quelque chose surprend, jamais trancher depuis la mémoire ou une intuition". Un nommage inhabituel, un comportement inattendu, une affirmation qui ne colle pas avec ce qu'on croyait savoir: le réflexe correct est de vérifier contre la doc officielle, pas de supposer une erreur.
 
 Ce skill se met à jour en continu, comme n'importe quel autre: toute correction découverte en cours de route est répercutée dans le fichier de référence concerné, dans le même échange, sans attendre que l'utilisateur le demande.
 
@@ -43,7 +43,7 @@ Faits confirmés, chacun idéalement rattaché à une source (URL doc officielle
 ...
 
 ## Points d'attention / pièges
-Comportements surprenants, différences avec ce qu'on pourrait supposer, erreurs déjà commises (comme le `.m.`).
+Comportements surprenants, différences avec ce qu'on pourrait supposer, erreurs déjà commises.
 
 ## Liens utiles
 Liste des URLs de doc officielle utilisées, pour retrouver la source rapidement la prochaine fois.
@@ -53,6 +53,24 @@ Tout ce qui reste incertain, une source secondaire seulement, ou une affirmation
 ```
 
 Si le fichier existe déjà, ne pas l'écraser aveuglément: relire d'abord, fusionner les nouvelles informations, mettre à jour la date d'en-tête, et signaler explicitement à l'utilisateur ce qui a changé depuis la dernière version si quelque chose de significatif a bougé.
+
+## `references/` vs `studycases/` : ne jamais mélanger
+
+`references/<techno>.md` reste **strictement généraliste**: des faits, point, jamais de narration ni d'incident propre à un projet ou un moment précis. Si un point mérite d'être raconté (une erreur commise, un raisonnement, un contexte spécifique), il part dans `${CLAUDE_SKILL_DIR}/studycases/<techno>-<sujet>.md`, jamais mélangé à la référence.
+
+Critère pour décider: **un fait s'énonce, une histoire se raconte.** "`.m.` = managed resources namespaced" est un fait (→ references/). "On a pris `.m.` pour une coquille et corrigé sans vérifier, voici pourquoi et ce qu'on en retient" est une histoire (→ studycases/).
+
+Structure d'un studycase:
+```markdown
+# Studycase — <titre court>
+
+## Contexte
+## Ce qui s'est réellement passé
+## Pourquoi l'erreur/la situation s'est produite
+## Ce qu'on en retient
+## Portée
+(le studycase est spécifique à ce contexte ; le fait général va dans references/, la leçon générale va dans SKILL.md, formulée sans dépendre de cet exemple précis)
+```
 
 ## Règle anti-staleness (la raison d'être de ce skill)
 
@@ -84,7 +102,7 @@ Deux déclencheurs pour transformer un candidat en vrai skill, **toujours avec v
 
 - Un fichier de référence par techno, jamais un fichier fourre-tout pour plusieurs technos, pour permettre une fraîcheur indépendante (Crossplane peut être à jour pendant que Prometheus est périmé).
 - Ne jamais recopier tel quel un fichier de référence d'un autre projet/une autre source sans le faire passer par ce process, même s'il a l'air à jour.
-- Les fichiers de `references/` sont globaux (attachés à ce skill, pas à un projet précis), volontairement, pour être réutilisables sur n'importe quel futur projet client. Les décisions propres à un projet précis (ex. "on utilise `.m.` sur CE projet parce que...") restent dans la doc du projet concerné (ex. `NOTES-<techno>.md` ou `docs/decisions.md` du repo), pas ici.
+- Les fichiers de `references/` sont globaux (attachés à ce skill, pas à un projet précis), volontairement, pour être réutilisables sur n'importe quel futur projet client. Les décisions propres à un projet précis restent dans la doc du projet concerné (ex. `NOTES-<techno>.md` ou `docs/decisions.md` du repo), pas ici.
 
 ## Todo / à approfondir
 
