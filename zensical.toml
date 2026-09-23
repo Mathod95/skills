@@ -1,16 +1,14 @@
 [project]
-# site_url, repo_url, repo_name, edit_uri à compléter une fois le repo GitHub créé
-# (dépend du nom d'utilisateur/repo choisi au moment du push).
-site_url = "https://mathod.github.io/claude-config/"
+site_url = "https://mathod95.github.io/skills/"
 site_name = "Claude Skills & Notes"
 site_description = "Skills, références techniques et process de gestion des skills Claude Code de Mathod"
 site_author = "Mathod"
 
-# copyright = "Copyright &copy; 2026 Mathod"
+copyright = "Copyright &copy; 2026 Mathod"
 
-# repo_url = "https://github.com/user/repo"
-# repo_name = "user/repo"
-# edit_uri = "edit/main/docs/"
+repo_url = "https://github.com/Mathod95/skills"
+repo_name = "Mathod95/skills"
+edit_uri = "edit/main/docs/"
 
 nav = [
   { "Accueil" = "index.md" },
