@@ -39,7 +39,7 @@ C'est le mécanisme le plus riche et le plus réutilisable (celui explicitement 
 
 Le rôle `pre_tasks` est obligatoire dans le playbook, ne jamais le retirer.
 
-**Point de départ recommandé — copier le rôle template `helloworld`** (`saltbox_mod/roles/helloworld/`, contenu vérifié verbatim via le repo GitHub `saltyorg/saltbox_mod`, pas juste un résumé):
+**ATTENTION, section historique (ancienne convention, périmée): le rôle template `helloworld`** (`saltbox_mod/roles/helloworld/`) date de février 2026 et ne doit PAS servir de modèle, voir la correction plus bas et prendre `Sandbox/AGENTS.md` et le rôle `authentik` mainline. Son contenu, vérifié verbatim, reste utile pour comprendre le mécanisme général (variables par familles, tasks partagées):
 
 `defaults/main.yml` établit, par convention, pour chaque rôle `<role>`, les familles de variables suivantes (toutes préfixées `<role>_`):
 - **Paths**: `<role>_paths_folder`, `<role>_paths_location` (= `{{ server_appdata_path }}/<role>_paths_folder`), `<role>_paths_folders_list`.
@@ -92,7 +92,12 @@ moninstance_docker_env_db: "..."
 
 **Déploiement**: `sb install postgres` (recrée toutes les instances listées dans `postgres_instances`, pas seulement les nouvelles).
 
-Différence de convention à noter: le rôle `postgres` mainline utilise en interne `lookup('role_var', '_suffixe', role='postgres')`, un plugin de lookup custom, alors que `saltbox_mod`/`helloworld` utilise le plus simple `lookup('vars', role_name + '_suffixe')`. Les deux coexistent dans l'écosystème Saltbox selon qu'on est dans le catalogue mainline ou dans un rôle custom — ne pas s'étonner de la différence, ne pas essayer de faire converger les deux sans raison.
+**Correction (vérifié le 2026-09-23): les deux conventions ne "coexistent" pas, l'ancienne est périmée.** Le template `helloworld` de `saltbox_mod` et celui de `Sandpit` (derniers commits février 2026, README de Sandpit: "DO NOT TRY TO USE THIS YET") suivent l'ancienne convention (`<role>_*`, `lookup('vars', role_name + ...)`, `dns.proxied`). Depuis la refonte documentée sur https://docs.saltbox.dev/saltbox/upgrade/role-refactor/, la convention en vigueur est `<role>_role_*` + `lookup('role_var', '_suffixe', role='<role>')` + `lookup('role_web', ...)` + `dns_proxied`, avec `main.yml` (boucle d'instances) et `main2.yml` si multi-instances. Ne jamais copier `helloworld` (saltbox_mod ou Sandpit) comme modèle.
+
+**Sources faisant foi pour écrire un rôle actuel:**
+- `saltyorg/Sandbox` (add-ons officiels, actif), guide de rédaction `AGENTS.md`: ordre des sections (Basics, Settings, Postgres, Redis, Paths, Web, DNS, Traefik, Ports, Docker, Dependencies), `role=` explicite dans chaque `role_var`, contrat Traefik API complet, pas de `_docker_state`, secrets persistés via `saltbox_facts`, linters `ansible-lint` et `saltbox-lint`.
+- `saltyorg/Saltbox` (mainline, rôles en production), modèle d'une appli web avec base: `roles/authentik` (importe le rôle `postgres` depuis le rôle avec un toggle `_postgres_deploy`, instance `<app>-postgres`, healthcheck `pg_isready`, attente `healthy` avant de créer l'appli, secret via `saltbox_facts`). Le mainline n'a pas d'`AGENTS.md`.
+- Un rôle qui a besoin d'une base la déploie donc lui-même (pas d'édition de `postgres_instances` dans l'Inventaire par l'utilisateur).
 
 ## 5. Système d'Inventory (config sans toucher aux rôles)
 
